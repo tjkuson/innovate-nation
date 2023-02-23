@@ -1,6 +1,6 @@
 import unittest
 
-from src.clean import (
+from cleaner.clean import (
     drop_column_above_ratio_of_missing_values,
     read_data,
     replace_missing_values_with_mean,
@@ -12,7 +12,7 @@ class TestCSVCleaning(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         """Load dataframe from CSV file."""
-        cls.df = read_data("src/tests/test.csv")
+        cls.df = read_data("cleaner/tests/test.csv")
 
     def test_read_data(self) -> None:
         """Tests the read data function."""
