@@ -32,5 +32,11 @@ The project basically cleans a dataset which can be a CSV, JSON or XML file and 
     * Validating the user inputted ratio.
 - Write the dataframe into the desired file format. 
     
+# Usage
 
+To run cleaner module, ensure you have the required dependencies installed. Then run the following command:
+
+```bash
+python3 -m cleaner
+```
 
