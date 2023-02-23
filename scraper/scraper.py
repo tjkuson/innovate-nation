@@ -13,8 +13,9 @@ class Scraper:
         self.driver.get(URL)
         time.sleep(3)
 
-    # Accept cookies from Chrome webpage
     def cookies(self) -> webdriver.Chrome:
+        """Accept cookies from Chrome webpage
+        """
         try:
             accept_cookies_button = self.driver.find_element(
                 by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]'
@@ -36,8 +37,15 @@ class Scraper:
         except:
             pass
 
-    # Collects the links of the clothes on the page
+    # 
     def get_links(self) -> list:
+        """Collects the links of the clothes on the page
+        
+        clothes_list: container of all the links
+
+        returns:
+            list: list of links
+        """
 
         clothes_container = self.driver.find_element(
             by=By.XPATH, value='//*[@class="listingPage_HfNlp"]'
@@ -56,22 +64,39 @@ class Scraper:
                 return link_list
 
     def create_id(self):
+        """Creates a unique id for each item of clothing
+
+        returns: id
+        """
         id = str(uuid.uuid4())
 
         return id
 
-    # Creates a dictionary of the clothes
     def create_dict(self, id, description, price, colour):
+        """Creates a dictionary of the data
+        args:
+            id: unique id
+            description: description of the item of clothing
+            price: price of the item of clothing
+            colour: colour of the item of clothing
+        returns:
+            dict: empty dictionary of the data
+        """
         id_dict = {}
 
         id_dict["id"] = id
         id_dict["description"] = description
         id_dict["price"] = price
         id_dict["colour"] = colour
+
         return id_dict
 
-    # Iterates through the links and collects the data
     def get_data(self):
+        """Iterates through the links and collects the data
+        clothes: list of links
+        returns:
+            clothes_list: list of dictionaries of the data
+        """
         clothes = []
         clothes.extend(self.get_links())
         clothes_list = []
@@ -97,8 +122,12 @@ class Scraper:
 
         return clothes_list
 
-    # Runs the functions and returns the list of clothes
+    # R
     def asos_scraper(self):
+        """Runs the functions and returns the list of clothes
+        returns:
+            list: list of dictionaries of the data
+        """
         print("running scraper.....")
         self.cookies()
         self.create_id()
