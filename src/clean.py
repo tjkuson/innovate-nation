@@ -2,6 +2,7 @@
 This script cleans the data.
 """
 import os
+from typing import Any
 
 import numpy as np
 import pandas as pd
@@ -26,48 +27,52 @@ def read_data(file_path: str) -> pd.DataFrame:
     return df
 
 
-def get_missing_values(df):
+def get_missing_values(df: pd.DataFrame) -> pd.DataFrame:
     """Returns the position of missing values."""
     return df.isnull()
 
 
-def replace_missing_values_with_new_value(df, new_value=0):
+def replace_missing_values_with_new_value(
+    df: pd.DataFrame, new_value: Any = 0
+) -> pd.DataFrame:
     """Replaces missing values with new value. Default is 0."""
     return df.fillna(new_value)
 
 
-def replace_missing_values_with_mean(df):
+def replace_missing_values_with_mean(df: pd.DataFrame) -> pd.DataFrame:
     """Replaces missing values with mean."""
     return df.fillna(df.mean())
 
 
-def replace_missing_values_with_median(df):
+def replace_missing_values_with_median(df: pd.DataFrame) -> pd.DataFrame:
     """Replaces missing values with median."""
     return df.fillna(df.median())
 
 
-def replace_missing_values_with_mode(df):
+def replace_missing_values_with_mode(df: pd.DataFrame) -> pd.DataFrame:
     """Replaces missing values with mode."""
     return df.fillna(df.mode())
 
 
-def drop_column_above_ratio_of_missing_values(df, ratio=0.5):
+def drop_column_above_ratio_of_missing_values(
+    df: pd.DataFrame, ratio: float = 0.5
+) -> pd.DataFrame:
     """Drops columns with ratio of missing values above threshold."""
     return df.dropna(axis=1, thresh=ratio * len(df))
 
 
-def drop_row(df):
+def drop_row(df: pd.DataFrame) -> pd.DataFrame:
     """Drops rows with missing values."""
     return df.dropna(axis=0)
 
 
-def consists_of_numeric_values(df) -> bool:
+def consists_of_numeric_values(df: pd.DataFrame) -> bool:
     """Checks if the dataframe consists of numeric values."""
     # FIXME: This is not working
     return df.applymap(np.isreal).all().all()
 
 
-def clean(df):
+def clean(df: pd.DataFrame) -> None:
     """Cleans the data."""
 
     # Loop through columns and ask use what they want to do
@@ -133,7 +138,7 @@ def clean(df):
                 print("Invalid choice. Please try again.")
 
 
-def main():
+def main() -> None:
     # Get file
     while True:
         file_path = input("Enter the file path: ")

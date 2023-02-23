@@ -9,7 +9,7 @@ from src.clean import (
 
 
 class TestCSVCleaning(unittest.TestCase):
-    def test_load_and_clean(self):
+    def test_load_and_clean(self) -> None:
         """Tests the load and clean function."""
 
         # Load the CSV file
