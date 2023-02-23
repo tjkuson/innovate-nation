@@ -4,8 +4,8 @@ This script cleans the data.
 import os
 from typing import Any
 
-import numpy as np
 import pandas as pd
+from pandas.api.types import is_numeric_dtype
 
 
 def read_data(file_path: str) -> pd.DataFrame:
@@ -68,8 +68,7 @@ def drop_row(df: pd.DataFrame) -> pd.DataFrame:
 
 def consists_of_numeric_values(df: pd.DataFrame) -> bool:
     """Checks if the dataframe consists of numeric values."""
-    # FIXME: This is not working
-    return df.applymap(np.isreal).all().all()
+    return is_numeric_dtype(df)
 
 
 def clean(df: pd.DataFrame) -> None:
@@ -154,6 +153,7 @@ def main() -> None:
     clean(df)
 
     # Save the data
+    print("Save the data:")
     while True:
         # Get export file format
         while True:
