@@ -1,4 +1,5 @@
 import csv
+
 import scraper
 
 # Run the Scraper class from scraper.py

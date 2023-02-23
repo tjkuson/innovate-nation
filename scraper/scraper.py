@@ -15,17 +15,14 @@ class Scraper:
         time.sleep(3)
 
     def cookies(self) -> webdriver.Chrome:
-        """Accept cookies from Chrome webpage
-        """
+        """Accept cookies from Chrome webpage"""
         try:
             accept_cookies_button = self.driver.find_element(
                 by=By.XPATH, value='//*[@id="onetrust-accept-btn-handler"]'
             )
             accept_cookies_button.click()
             time.sleep(1)
-        except (
-            AttributeError
-        ):
+        except AttributeError:
             self.driver.switch_to.frame(
                 "onetrust-consent-sdk"
             )  # This is the id of the frame
@@ -40,7 +37,7 @@ class Scraper:
 
     def get_links(self) -> list:
         """Collects the links of the clothes on the page
-        
+
         clothes_list: container of all the links
 
         returns:
