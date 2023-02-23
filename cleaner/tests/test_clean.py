@@ -1,3 +1,7 @@
+"""
+Tests the data cleaning functions.
+"""
+
 import unittest
 
 from cleaner.clean import (
@@ -9,6 +13,8 @@ from cleaner.clean import (
 
 
 class TestCSVCleaning(unittest.TestCase):
+    """Tests the CSV cleaning functions."""
+
     @classmethod
     def setUpClass(cls) -> None:
         """Load dataframe from CSV file."""
