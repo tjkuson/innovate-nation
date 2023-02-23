@@ -37,7 +37,6 @@ class Scraper:
         except:
             pass
 
-    # 
     def get_links(self) -> list:
         """Collects the links of the clothes on the page
         
@@ -122,7 +121,6 @@ class Scraper:
 
         return clothes_list
 
-    # R
     def asos_scraper(self):
         """Runs the functions and returns the list of clothes
         returns:
