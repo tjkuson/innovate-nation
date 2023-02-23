@@ -1,4 +1,6 @@
 # Innovate-Nation
+[![CMake Badge](https://img.shields.io/github/actions/workflow/status/tjkuson/innovate-nation/ci.yml?branch=main)](https://github.com/tjkuson/innovate-nation/actions/workflows/ci.yml)
+
 Event :Xander Hackathon
 --------------------------------------
 ## Project Objective
