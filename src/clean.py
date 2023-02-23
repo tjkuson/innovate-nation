@@ -70,11 +70,16 @@ def drop_column_above_ratio_of_missing_values(
 
     # Drop column if ratio of missing values is above threshold
     if ratio_missing > ratio:
-        print(f"Dropping column {col} because ratio of missing values is above threshold.")
+        print(
+            f"Dropping column {col} because ratio of missing values is above threshold."
+        )
         return df.drop(col, axis=1, inplace=True)
     else:
-        print(f"Keeping column {col} because ratio of missing values is below threshold.")
+        print(
+            f"Keeping column {col} because ratio of missing values is below threshold."
+        )
         return df
+
 
 def drop_row(df: pd.DataFrame) -> pd.DataFrame:
     """Drops rows with missing values."""

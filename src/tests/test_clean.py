@@ -9,7 +9,6 @@ from src.clean import (
 
 
 class TestCSVCleaning(unittest.TestCase):
-
     @classmethod
     def setUpClass(cls) -> None:
         """Load dataframe from CSV file."""
@@ -36,7 +35,6 @@ class TestCSVCleaning(unittest.TestCase):
         df = self.df.copy()
         drop_column_above_ratio_of_missing_values(df, "Age", 0.80)
         self.assertEqual(df.shape, (10, 3))
-
 
 
 if __name__ == "__main__":
