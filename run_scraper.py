@@ -11,7 +11,3 @@ writer = csv.DictWriter(myFile, fieldnames=['id', 'description', 'price', 'colou
 writer.writeheader()
 writer.writerows(clothes_list)
 myFile.close()
-# myFile = open('demo_file.csv', 'r')
-# print("The content of the csv file is:")
-# print(myFile.read())
-# myFile.close()

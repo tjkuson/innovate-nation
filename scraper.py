@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 import uuid
+from datetime import datetime
 
 class Scraper():
 
@@ -30,20 +31,22 @@ class Scraper():
 
 
     def get_links(self) ->list:
-        
+        start = datetime.now()
         #self.driver.get_screenshot_as_file("screenshot.png")
         clothes_container = self.driver.find_element(by=By.XPATH, value='//*[@class="listingPage_HfNlp"]')
         clothes_list = clothes_container.find_elements(by=By.XPATH, value='./article')
         link_list = []
-       
+        print(len(clothes_list))
+        
         for clothes in clothes_list:
-            
             a_tag = clothes.find_element(by=By.TAG_NAME, value='a')
             link = a_tag.get_attribute('href')
             link_list.append(link)
+            if len(link_list) == 5:
+                print(f'There are {len(link_list)} items of clothing in this page')
+                return link_list  
+
             
-        print(f'There are {len(link_list)} items of clothing in this page')
-        return link_list
 
     def create_id(self):
         id = str(uuid.uuid4())
