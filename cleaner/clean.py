@@ -208,7 +208,3 @@ def main() -> None:
         elif file_format == "xml":
             df.to_xml(file_name, index=False)
         break
-
-
-if __name__ == "__main__":
-    main()
