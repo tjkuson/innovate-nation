@@ -1,10 +1,10 @@
 import unittest
-import pandas as pd
+
 from src.clean import (
-    read_data,
-    replace_missing_values_with_new_value,
-    replace_missing_values_with_mean,
     drop_column_above_ratio_of_missing_values,
+    read_data,
+    replace_missing_values_with_mean,
+    replace_missing_values_with_new_value,
 )
 
 
@@ -13,7 +13,6 @@ class TestCSVCleaning(unittest.TestCase):
         """Tests the load and clean function."""
 
         # Load the CSV file
-        super().__init__()
         df = read_data("test.csv")
         # Check if the data is loaded
         self.assertEqual(df.shape, (10, 3))

@@ -3,11 +3,11 @@ This script cleans the data.
 """
 import os
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 
-def read_data(file_path):
+def read_data(file_path: str) -> pd.DataFrame:
     """Reads in the data."""
 
     # Check if file exists
@@ -63,6 +63,7 @@ def drop_row(df):
 
 def consists_of_numeric_values(df) -> bool:
     """Checks if the dataframe consists of numeric values."""
+    # FIXME: This is not working
     return df.applymap(np.isreal).all().all()
 
 
