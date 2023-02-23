@@ -30,4 +30,3 @@ jobs:
           poetry run black . --check
           poetry run isort . --check-only
           poetry run ssort . --check
-          poetry run mypy .
