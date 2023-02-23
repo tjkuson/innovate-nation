@@ -9,25 +9,34 @@ from src.clean import (
 
 
 class TestCSVCleaning(unittest.TestCase):
-    def test_load_and_clean(self) -> None:
-        """Tests the load and clean function."""
 
-        # Load the CSV file
-        df = read_data("test.csv")
-        # Check if the data is loaded
+    @classmethod
+    def setUpClass(cls) -> None:
+        """Load dataframe from CSV file."""
+        cls.df = read_data("src/tests/test.csv")
+
+    def test_read_data(self) -> None:
+        """Tests the read data function."""
+        self.assertEqual(self.df.shape, (10, 4))
+
+    def test_replace_missing_values_with_new_value(self) -> None:
+        """Tests the replace missing values with new value function."""
+        df = self.df.copy()
+        df["Interest"] = replace_missing_values_with_new_value(df["Interest"], "NA")
+        self.assertEqual(df["Interest"].isnull().sum(), 0)
+
+    def test_replace_missing_values_with_mean(self) -> None:
+        """Tests the replace missing values with mean function."""
+        df = self.df.copy()
+        df["Average"] = replace_missing_values_with_mean(df["Average"])
+        self.assertEqual(df["Average"].isnull().sum(), 0)
+
+    def test_drop_column_above_ratio_of_missing_values(self) -> None:
+        """Tests the drop column above ratio of missing values function."""
+        df = self.df.copy()
+        drop_column_above_ratio_of_missing_values(df, "Age", 0.80)
         self.assertEqual(df.shape, (10, 3))
 
-        # Clean the data in second column
-        df["Interest"] = replace_missing_values_with_new_value(df["Interest"], "NA")
-
-        # Clean data in third column
-        df["Average"] = replace_missing_values_with_mean(df["Average"])
-
-        # Clean data in fourth column
-        df = drop_column_above_ratio_of_missing_values(df, 0.5)
-
-        # Check if the data is cleaned
-        self.assertEqual(df.isnull().sum().sum(), 0)
 
 
 if __name__ == "__main__":

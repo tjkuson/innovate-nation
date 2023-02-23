@@ -55,11 +55,26 @@ def replace_missing_values_with_mode(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def drop_column_above_ratio_of_missing_values(
-    df: pd.DataFrame, ratio: float = 0.5
+    df: pd.DataFrame, col: str, ratio: float = 0.5
 ) -> pd.DataFrame:
-    """Drops columns with ratio of missing values above threshold."""
-    return df.dropna(axis=1, thresh=ratio * len(df))
+    """Drops column if it has a ratio of missing values above threshold."""
 
+    # Get number of missing values
+    num_missing = df[col].isnull().sum()
+
+    # Get total number of values
+    total = df.shape[0]
+
+    # Calculate ratio of missing values
+    ratio_missing = num_missing / total
+
+    # Drop column if ratio of missing values is above threshold
+    if ratio_missing > ratio:
+        print(f"Dropping column {col} because ratio of missing values is above threshold.")
+        return df.drop(col, axis=1, inplace=True)
+    else:
+        print(f"Keeping column {col} because ratio of missing values is below threshold.")
+        return df
 
 def drop_row(df: pd.DataFrame) -> pd.DataFrame:
     """Drops rows with missing values."""
@@ -126,7 +141,7 @@ def clean(df: pd.DataFrame) -> None:
                 except ValueError:
                     print("Invalid ratio. Please try again.")
                     continue
-                df = drop_column_above_ratio_of_missing_values(df, ratio)
+                df = drop_column_above_ratio_of_missing_values(df, column, ratio)
                 break
             elif choice == "6":
                 df = drop_row(df)
